@@ -37,21 +37,39 @@ def simulate_queue(num_attendants, num_processes, central_type):
 
     return total_time, utilization_rate
 
+# Função para exibir informações da central
+def show_central_info(central_name, num_attendants, num_processes, utilization_rate):
+    st.write(f"### Informações da {central_name}")
+    st.write(f"**Número de processos ativos:** {num_processes}")
+    st.write(f"**Número de atendentes:** {num_attendants}")
+    st.write(f"**Taxa de utilização:** {utilization_rate:.2%}")
+
 # Configurações do Streamlit
 st.title("Simulação de Teoria das Filas com Atendentes Simultâneos")
 
-# Opções de seleção para a central
-central_type = st.selectbox("Escolha a central:", ["Central Varejo (40 dias)", "Central Grande (60 dias)"])
+# Simular duas centrais
+centrais = {
+    "Central Varejo (40 dias)": {"atendentes": 3, "processos": 10},
+    "Central Grande (60 dias)": {"atendentes": 4, "processos": 8},
+}
 
+# Exibição das centrais
+st.write("### Centrais Disponíveis")
+for central_name, data in centrais.items():
+    if st.button(central_name):
+        total_time, utilization_rate = simulate_queue(data["atendentes"], data["processos"], central_name)
+        show_central_info(central_name, data["atendentes"], data["processos"], utilization_rate)
+
+# Seção de simulação personalizada
+st.write("---")
+st.write("### Simulação Personalizada")
+
+central_type = st.selectbox("Escolha a central:", ["Central Varejo (40 dias)", "Central Grande (60 dias)"])
 num_attendants = st.number_input("Número de atendentes:", min_value=1, value=1)
 num_processes = st.number_input("Número de processos:", min_value=1, value=1)
 
 if st.button("Simular"):
     # Determina o tipo de central com base na seleção do usuário
-    if central_type == "Central 1 (40 dias)":
-        total_time, utilization_rate = simulate_queue(num_attendants, num_processes, "Central 1")
-    else:
-        total_time, utilization_rate = simulate_queue(num_attendants, num_processes, "Central 2")
-
+    total_time, utilization_rate = simulate_queue(num_attendants, num_processes, central_type)
     st.write(f"Tempo total para atender todos os processos: {total_time} dias.")
     st.write(f"Taxa de utilização do sistema: {utilization_rate:.2%}")
