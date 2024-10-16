@@ -64,9 +64,6 @@ for central_name, data in centrais.items():
 st.write("---")
 st.write("### Simulação Personalizada")
 
-# Configurações do Streamlit
-st.title("Simulação de Teoria das Filas com Atendentes Simultâneos")
-
 # Opções de seleção para a central
 central_type = st.selectbox("Escolha a central:", ["Central 1 (40 dias)", "Central 2 (60 dias)"])
 
