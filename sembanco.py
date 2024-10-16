@@ -41,7 +41,7 @@ def simulate_queue(num_attendants, num_processes, central_type):
 st.title("Simulação de Teoria das Filas com Atendentes Simultâneos")
 
 # Opções de seleção para a central
-central_type = st.selectbox("Escolha a central:", ["Central 1 (40 dias)", "Central 2 (60 dias)"])
+central_type = st.selectbox("Escolha a central:", ["Central Varejo (40 dias)", "Central Grande (60 dias)"])
 
 num_attendants = st.number_input("Número de atendentes:", min_value=1, value=1)
 num_processes = st.number_input("Número de processos:", min_value=1, value=1)
