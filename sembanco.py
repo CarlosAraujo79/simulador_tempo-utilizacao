@@ -64,12 +64,22 @@ for central_name, data in centrais.items():
 st.write("---")
 st.write("### Simulação Personalizada")
 
-central_type = st.selectbox("Escolha a central:", ["Central Varejo (40 dias)", "Central Grande (60 dias)"])
+# Configurações do Streamlit
+st.title("Simulação de Teoria das Filas com Atendentes Simultâneos")
+
+# Opções de seleção para a central
+central_type = st.selectbox("Escolha a central:", ["Central 1 (40 dias)", "Central 2 (60 dias)"])
+
 num_attendants = st.number_input("Número de atendentes:", min_value=1, value=1)
 num_processes = st.number_input("Número de processos:", min_value=1, value=1)
 
 if st.button("Simular"):
     # Determina o tipo de central com base na seleção do usuário
-    total_time, utilization_rate = simulate_queue(num_attendants, num_processes, central_type)
+    if central_type == "Central 1 (40 dias)":
+        total_time, utilization_rate = simulate_queue(num_attendants, num_processes, "Central 1")
+    else:
+        total_time, utilization_rate = simulate_queue(num_attendants, num_processes, "Central 2")
+
     st.write(f"Tempo total para atender todos os processos: {total_time} dias.")
     st.write(f"Taxa de utilização do sistema: {utilization_rate:.2%}")
+
