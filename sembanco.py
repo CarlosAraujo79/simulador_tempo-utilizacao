@@ -65,7 +65,7 @@ st.write("---")
 st.write("### Simulação Personalizada")
 
 # Opções de seleção para a central
-central_type = st.selectbox("Escolha a central:", ["Central 1 (40 dias)", "Central 2 (60 dias)"])
+central_type = st.selectbox("Escolha a central:", ["Central Pequena (40 dias)", "Central Média/Grande (60 dias)"])
 
 num_attendants = st.number_input("Número de atendentes:", min_value=1, value=1)
 num_processes = st.number_input("Número de processos:", min_value=1, value=1)
