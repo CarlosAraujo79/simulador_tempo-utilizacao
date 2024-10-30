@@ -40,11 +40,12 @@ def simulate_queue(num_attendants, num_processes, existing_processes, central_ty
     return total_time, utilization_rate
 
 # Função para exibir informações da central
-def show_central_info(central_name, total_attendants, total_processes, utilization_rate):
+def show_central_info(central_name, total_attendants, total_processes, utilization_rate, total_time):
     st.write(f"### Informações da {central_name}")
     st.write(f"**Número total de processos (ativos + novos):** {total_processes}")
     st.write(f"**Número total de atendentes:** {total_attendants}")
     st.write(f"**Taxa de utilização:** {utilization_rate:.2%}")
+    st.write(f"**Tempo total para atender todos os processos:** {total_time} dias")
 
 # Configurações do Streamlit
 st.title("Acompanhamento de uso das Centrais - Banco do Nordeste")
@@ -61,7 +62,7 @@ for central_name, data in centrais.items():
     with st.expander(central_name):
         total_processes = data["processos"] + data["existentes"]
         total_time, utilization_rate = simulate_queue(data["atendentes"], data["processos"], data["existentes"], central_name)
-        show_central_info(central_name, data["atendentes"], total_processes, utilization_rate)
+        show_central_info(central_name, data["atendentes"], total_processes, utilization_rate, total_time)
 
 # Seção de simulação personalizada com expander
 st.write("---")
