@@ -59,7 +59,7 @@ def show_central_info(central_name, total_attendants, total_processes, utilizati
     st.write(f"**Taxa de utilização:** {utilization_rate:.2%}")
 
 # Configurações do Streamlit
-st.title("Simulação de Teoria das Filas com Atendentes Simultâneos")
+st.title("Acompanhamento de uso das Centrais - Banco do Nordeste")
 
 # Simular duas centrais com processos existentes
 centrais = {
