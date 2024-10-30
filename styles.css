@@ -1,0 +1,44 @@
+/* Estilos personalizados com a paleta de cores do Banco do Nordeste */
+body {
+    background-color: #FFFFFF; /* Branco */
+    color: #4B4B4D; /* Cinza */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #990033; /* Vermelho Banco do Nordeste */
+}
+
+.stButton>button {
+    background-color: #FF8C42; /* Laranja Banco do Nordeste suavizado */
+    color: white; /* Texto branco */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.stButton>button:hover {
+    background-color: #FF6B22; /* Laranja mais escuro para hover */
+    color: white; /* Mantém o texto branco */
+}
+
+.stSelectbox, .stNumber_input {
+    background-color: #FFE4C4; /* Salmão claro */
+    color: #4B4B4D; /* Cinza escuro */
+    border: 2px solid #FFD700; /* Amarelo mais suave */
+    border-radius: 4px;
+    padding: 5px;
+}
+
+footer {
+    color: #FFFFFF; /* Texto branco */
+    background-color: #990033; /* Vermelho Banco do Nordeste */
+}
+
+div[role="radiogroup"] {
+    background-color: #FFE4C4; /* Salmão claro */
+    border: 2px solid #FFD700; /* Amarelo */
+    border-radius: 4px;
+    padding: 10px;
+}
