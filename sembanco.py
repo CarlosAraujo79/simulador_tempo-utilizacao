@@ -11,6 +11,7 @@ def local_css(file_name):
 local_css("styles.css")
 
 # Função para simular a fila com atendentes trabalhando simultaneamente
+# Função para simular a fila com atendentes trabalhando simultaneamente
 def simulate_queue(num_attendants, num_processes, existing_processes, central_type):
     if central_type == "Central Pequena (40 dias)":
         service_times = np.full(num_processes, 40)
@@ -20,22 +21,16 @@ def simulate_queue(num_attendants, num_processes, existing_processes, central_ty
     existing_service_times = np.full(existing_processes, 40 if central_type == "Central Pequena (40 dias)" else 60)
     service_times = np.concatenate((service_times, existing_service_times))
 
-    service_times.sort()
-    
+    # Garantir que os processos sejam atendidos em blocos, conforme o número de atendentes disponíveis
     total_time = 0
     processes_remaining = len(service_times)
-    busy_time = 0
 
     while processes_remaining > 0:
         current_batch_size = min(num_attendants, processes_remaining)
-        round_time = service_times[-current_batch_size]
-        total_time += round_time
-        busy_time += round_time * current_batch_size
-        service_times = service_times[:-current_batch_size]
+        total_time += 40 if central_type == "Central Pequena (40 dias)" else 60
         processes_remaining -= current_batch_size
 
-    total_attendant_time = num_attendants * total_time
-    utilization_rate = busy_time / total_attendant_time if total_attendant_time > 0 else 0
+    utilization_rate = 1.0  # Como estamos completando todos os processos, o uso é 100%
 
     return total_time, utilization_rate
 
